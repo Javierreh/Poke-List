@@ -3,10 +3,10 @@
 
   <div [ngSwitch]="field.controlType">
 
-    <input *ngSwitchCase="'textbox'" [formControlName]="field.key"
-            [id]="field.key" [type]="field.type">
+    <input *ngSwitchCase="'textbox'" [formControlName]="field.key" [id]="field.key" [type]="field.type">
 
     <select *ngSwitchCase="'dropdown'" [formControlName]="field.key" [id]="field.key">
+      <option hidden selected></option>
       <option *ngFor="let opt of field.options" [value]="opt">{{opt}}</option>
     </select>
 

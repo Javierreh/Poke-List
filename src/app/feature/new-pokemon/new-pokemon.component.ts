@@ -15,7 +15,7 @@ export class NewPokemonComponent implements OnInit {
   form: FormGroup;
   types: any = [];
 
-  constructor(private qcs: FormControlService, private newPokemonService: NewPokemonService) {
+  constructor(private fcs: FormControlService, private newPokemonService: NewPokemonService) {
     this.newPokemonService.getTypes().subscribe(result => {
       result['results'].forEach(type => {
         this.types.push(type['name']);
@@ -25,7 +25,7 @@ export class NewPokemonComponent implements OnInit {
 
   ngOnInit() {
     this.fields = npf.registerPokemon(this.types);
-    this.form = this.qcs.toFormGroup(this.fields);
+    this.form = this.fcs.toFormGroup(this.fields);
   }
 
   onSubmit() {

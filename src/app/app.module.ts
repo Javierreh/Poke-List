@@ -13,6 +13,7 @@ import { FormControlService } from './shared/components/form-generator/form-cont
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './feature/home/home.component';
 import { ListPokemonComponent } from './feature/list-pokemon/list-pokemon.component';
+import { FilterPokemonComponent } from './feature/list-pokemon/filter-pokemon/filter-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ListPokemonComponent } from './feature/list-pokemon/list-pokemon.compon
     NewPokemonComponent,
     FormGeneratorComponent,
     HomeComponent,
-    ListPokemonComponent
+    ListPokemonComponent,
+    FilterPokemonComponent
   ],
   imports: [
     BrowserModule,

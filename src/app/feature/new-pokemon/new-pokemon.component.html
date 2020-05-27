@@ -1,5 +1,5 @@
 <div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form-container">
     <h2>Añade tu Pokémon</h2>
 
     <div *ngFor="let field of fields">
@@ -8,6 +8,7 @@
 
     <div class="button">
       <input type="submit" [disabled]="!form.valid" value="Insertar Pokemon">
+      <input type="reset" value="Borrar">
     </div>
   </form>
 
