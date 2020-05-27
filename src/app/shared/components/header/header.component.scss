@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'pokemon';
+  src: url('/assets/fonts/Pokemon\ Solid.ttf') format("truetype");
+}
+
+header {
+  max-height: 150px;
+  background-image: url('./../../../../assets/images/header.jpg');
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  filter: grayscale(60%);
+  padding: 10px;
+  box-shadow: 0 1px 2.5px black;
+
+  h1 {
+    font-family: 'pokemon', sans-serif;
+    letter-spacing: 8px;
+    text-align: center;
+    font-size: 40px;
+    padding-bottom: 20px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 2px white;
+    color: blue;
+  }
+}
+
+@media (min-width: 576px) {
+  header {
+    background-size: 90%;
+    h1 {
+      font-size: 60px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  header { background-size: 80%; }
+}
+
+@media (min-width: 992px) {
+  header { background-size: 70%; }
+}
+
+@media (min-width: 1200px) {
+  header { background-size: 60%; }
+}

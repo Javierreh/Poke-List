@@ -1,0 +1,16 @@
+<div [formGroup]="form" class="form-group">
+  <label [attr.for]="field.key">{{field.label}}</label>
+
+  <div [ngSwitch]="field.controlType">
+
+    <input *ngSwitchCase="'textbox'" [formControlName]="field.key"
+            [id]="field.key" [type]="field.type">
+
+    <select *ngSwitchCase="'dropdown'" [formControlName]="field.key" [id]="field.key">
+      <option *ngFor="let opt of field.options" [value]="opt">{{opt}}</option>
+    </select>
+
+  </div>
+
+  <div class="errorMessage" *ngIf="!isValid && form.get(this.field.key).touched">Completa este campo</div>
+</div>

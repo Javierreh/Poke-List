@@ -1,0 +1,14 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <h2>Añade tu Pokémon</h2>
+
+    <div *ngFor="let field of fields">
+      <app-form-generator [field]="field" [form]="form"></app-form-generator>
+    </div>
+
+    <div class="button">
+      <input type="submit" [disabled]="!form.valid" value="Insertar Pokemon">
+    </div>
+  </form>
+
+</div>

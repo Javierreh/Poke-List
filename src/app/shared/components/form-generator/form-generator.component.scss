@@ -1,0 +1,21 @@
+.errorMessage {
+  color: red;
+}
+
+.form-group {
+  padding: 10px;
+
+  input, select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+  }
+
+  label {
+    font-size: 17px;
+  }
+}
+

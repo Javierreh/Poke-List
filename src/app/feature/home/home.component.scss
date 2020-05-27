@@ -1,0 +1,19 @@
+.flex-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  
+  .flex-item {
+    width: 100%;
+    padding: 10px;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .flex-container {
+    flex-direction: row;
+    .flex-item:nth-child(1n) { width: 40%; }
+    .flex-item:nth-child(2n) { width: 60%; }
+  }
+}
