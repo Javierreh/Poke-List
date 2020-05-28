@@ -13,7 +13,7 @@ export class NewPokemonFields {
 
       new TextboxField({
         key: 'weight',
-        label: 'Peso',
+        label: 'Peso (Kg)',
         type: 'number',
         required: true,
         order: 2
