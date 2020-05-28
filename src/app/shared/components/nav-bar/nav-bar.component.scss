@@ -1,0 +1,37 @@
+nav.nav-bar {
+  background-color: #ccc;
+
+  .nav-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: auto;
+    display: flex;
+    width: 100%;
+
+    .nav-item {
+      display: block;
+      color: darkblue;
+      padding: 20px 15px;
+      text-decoration: none;
+      font-weight: bold;
+      width: 50%;
+
+      i {
+        font-size: 20px;
+        padding-right: 7px;
+      }
+    }
+
+    .nav-item.active {
+      color: white;
+      background-color: darkblue;
+    }
+
+  }
+  @media (min-width: 576px) {
+    .nav-list {
+      width: auto;
+      .nav-item {  width: auto; }
+    }
+  }
+}

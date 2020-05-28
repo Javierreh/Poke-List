@@ -11,9 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormControlService } from './shared/components/form-generator/form-control.service';
 
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './feature/home/home.component';
 import { ListPokemonComponent } from './feature/list-pokemon/list-pokemon.component';
 import { FilterPokemonComponent } from './feature/list-pokemon/filter-pokemon/filter-pokemon.component';
+import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ import { FilterPokemonComponent } from './feature/list-pokemon/filter-pokemon/fi
     HeaderComponent,
     NewPokemonComponent,
     FormGeneratorComponent,
-    HomeComponent,
     ListPokemonComponent,
-    FilterPokemonComponent
+    FilterPokemonComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
