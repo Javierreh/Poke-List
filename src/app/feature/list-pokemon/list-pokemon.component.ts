@@ -14,11 +14,13 @@ export class ListPokemonComponent implements OnInit {
   constructor(private pokemonService: PokemonService) { }
 
   async ngOnInit() {
-    await this.pokemonService.getAllPokemon().toPromise()
-      .then(result => this.pokemonList = result.results);
+    // Get all pokemon in list
+    this.pokemonList = await this.pokemonService.getAllPokemon().toPromise()
+      .then(result =>  result.results);
 
-    this.pokemonList.forEach(pokemon => {
-      this.pokemonService.getInfoPokemon(pokemon.url).toPromise()
+    // Get information of each pokemon and order desc
+    for (let i = this.pokemonList.length - 1; i >= 0; i--) {
+      await this.pokemonService.getInfoPokemon(this.pokemonList[i].url).toPromise()
         .then(result => {
           this.fullPokemonList.push({
             id: result.id,
@@ -29,8 +31,11 @@ export class ListPokemonComponent implements OnInit {
             sprite: result.sprites.front_default
           });
         });
-    });
-    console.log(this.fullPokemonList);
+    }
+    this.sortArrayById(this.fullPokemonList);
   }
 
+  sortArrayById(array) {
+    return array.sort((a, b) => b.id - a.id);
+  }
 }
