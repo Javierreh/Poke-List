@@ -3,3 +3,50 @@
   padding: 10px 15px;
   max-width: 1200px;
 }
+
+.table-container {
+  margin: 30px auto 10px;
+  table {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 4px;
+
+    tr.table-header {
+      display: flex;
+      color: darkblue;
+      font-size: 16px;
+      padding: 5px 10px;
+      th {
+        width: 100%;
+        padding: 5px;
+        &:not(:last-child) {
+          border-right: solid 1px gray;
+        }
+      }
+    }
+
+    tr.table-content {
+      display: flex;
+      padding: 5px 10px;
+      font-size: 14px;
+      height: auto;
+      td {
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background-color: whitesmoke;
+        padding: 10px 5px;
+      }
+      img {
+        width: 96px;
+        max-width: 100%;
+      }
+      td.type {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

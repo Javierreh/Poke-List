@@ -6,9 +6,9 @@
 
     <select *ngSwitchCase="'dropdown'" [formControlName]="field.key" [id]="field.key">
       <option hidden selected></option>
-      <option *ngFor="let opt of field.options" [value]="opt">{{opt}}</option>
+      <option *ngFor="let opt of field.options" [value]="opt">{{ opt | titlecase }}</option>
     </select>
-    <label class="floating-label" [attr.for]="field.key">{{field.label}}</label>
+    <label class="floating-label" [attr.for]="field.key">{{ field.label }}</label>
   </div>
 
   <div class="error-message" *ngIf="!isValid && form.get(this.field.key).touched">Completa este campo</div>
