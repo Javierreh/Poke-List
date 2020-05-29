@@ -3,7 +3,8 @@ import { NewPokemonFields as npf } from './new-pokemon-form-field';
 import { FormFieldBase } from './../../shared/components/form-generator/classes/form-field-base';
 import { FormGroup } from '@angular/forms';
 import { FormControlService } from './../../shared/components/form-generator/form-control.service';
-import { NewPokemonService, Pokemon } from './../../service/new-pokemon.service';
+import { NewPokemonService } from './../../service/new-pokemon.service';
+import { UtilsService, Pokemon } from './../../service/utils.service';
 
 @Component({
   selector: 'app-new-pokemon',
@@ -13,14 +14,12 @@ import { NewPokemonService, Pokemon } from './../../service/new-pokemon.service'
 export class NewPokemonComponent implements OnInit {
   @Input() fields: FormFieldBase<string>[] = [];
   form: FormGroup;
-  types: any = [];
+  types: string[] = [];
 
-  constructor(private fcs: FormControlService, private newPokemonService: NewPokemonService) {
-    this.newPokemonService.getTypes().subscribe(result => {
-      result['results'].forEach(type => {
-        this.types.push(type['name']);
-      });
-    });
+  constructor(private fcs: FormControlService,
+              private newPokemonService: NewPokemonService,
+              private utils: UtilsService) {
+    this.types = this.utils.getTypes();
   }
 
   ngOnInit() {

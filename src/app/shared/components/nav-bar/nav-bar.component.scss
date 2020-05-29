@@ -16,6 +16,10 @@ nav.nav-bar {
       font-weight: bold;
       width: 50%;
 
+      span {
+        display: none;
+      }
+
       i {
         font-size: 20px;
         padding-right: 7px;
@@ -31,7 +35,10 @@ nav.nav-bar {
   @media (min-width: 576px) {
     .nav-list {
       width: auto;
-      .nav-item {  width: auto; }
+      .nav-item { 
+        width: auto;
+        span { display: inline; }
+      }
     }
   }
 }

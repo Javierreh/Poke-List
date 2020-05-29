@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
+  // width: 100%;
   
   .flex-item {
     width: 100%;
@@ -10,10 +10,10 @@
 }
 
 @media (min-width: 768px) {
-  .flex-container .flex-item { width: 50%; }
+  .flex-container .flex-item { width: 50% !important; }
 }
 
 @media (min-width: 992px) {
-  .flex-container .flex-item { width: 33%; }
+  .flex-container .flex-item { width: 33% !important; }
   
 }

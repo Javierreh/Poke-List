@@ -1,29 +1,17 @@
 <div class="container">
-  <div class="form-container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form-container">
     <h2>Encuentra tu Pokémon</h2>
+
     <div class="flex-container">
-      <div class="flex-item">
-        <!-- <label>Nombre</label> -->
-        <!-- <input type="text"> -->
-      </div>
-      <div class="flex-item">
-        <!-- <label>Peso</label> -->
-        <!-- <input type="number"> -->
-      </div>
-      <div class="flex-item">
-        <!-- <label>Nombre</label> -->
-        <!-- <input type="text"> -->
-      </div>
-      <div class="flex-item">
-        <!-- <label>Nombre</label> -->
-        <!-- <input type="text"> -->
-      </div>
-      <div class="flex-item">
-        <!-- <label>Nombre</label> -->
-        <!-- <input type="text"> -->
+      <div *ngFor="let field of fields" class="flex-item">
+        <app-form-generator [field]="field" [form]="form" class=""></app-form-generator>
       </div>
     </div>
-  </div>
+
+    <div class="buttons">
+      <input type="submit" value="Buscar">
+      <input type="reset" value="Borrar">
+    </div>
+  </form>
+
 </div>
-
-

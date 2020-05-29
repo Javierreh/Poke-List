@@ -37,6 +37,20 @@ input[type=reset] {
   background-color: #bd3535;
 }
 
+input[type=submit], input[type=reset] {
+  &[disabled] {
+    background-color: gray;
+  }
+}
+
+.buttons {
+  margin-top: 10px;
+  text-align: center;
+  input {
+    margin: 5px;
+  }
+}
+
 .form-group {
   padding: 10px 10px 16px;
   position: relative;
@@ -70,7 +84,7 @@ input[type=reset] {
   }
 
   input.ng-dirty ~ .floating-label, 
-  input:focus ~ .floating-label, 
+  input:focus ~ .floating-label,
   select.ng-dirty ~ .floating-label,
   select:focus ~ .floating-label {
     font-size: 12px;
