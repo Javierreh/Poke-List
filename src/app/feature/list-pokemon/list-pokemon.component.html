@@ -19,7 +19,10 @@
             <span>{{ pokemon.type2 }}</span>
           </div>
         </td>
-        <td><img [src]="pokemon.sprite"></td>
+        <td>
+          <div *ngIf="!loaded" class="spinner-loading"></div>
+          <img [hidden]="!loaded" (load)="loaded = true" [src]="pokemon.sprite">
+        </td>
       </tr>
     </table> 
   </div>

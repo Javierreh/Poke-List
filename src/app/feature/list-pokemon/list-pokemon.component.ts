@@ -10,6 +10,8 @@ import { Pokemon } from 'src/app/model/pokemon.interface';
 })
 export class ListPokemonComponent implements OnInit {
 
+  loaded = false;
+
   pokemonList = [];
   fullPokemonList: Pokemon[] = [];
   filteredPokemon: Pokemon[] = [];

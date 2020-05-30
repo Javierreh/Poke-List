@@ -133,3 +133,17 @@ input[type=submit], input[type=reset] {
     &.dark       { background-color: #705848; border-top-color: lighten(#705848, 15%); border-bottom-color: darken(#705848, 15%); }
     &.fairy      { background-color: #ffb7fa; border-top-color: lighten(#ffb7fa, 15%); border-bottom-color: darken(#ffb7fa, 15%); }
 }
+
+.spinner-loading {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #bbb;
+  border-left: 3px solid darkblue;
+  border-radius: 50%;
+  animation: looping 1s linear infinite;
+}
+
+@keyframes looping {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
