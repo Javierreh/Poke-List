@@ -1,17 +1,15 @@
 <div class="container">
-  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form-container">
+  <form [formGroup]="form" class="form-container">
     <h2>Encuentra tu Pokémon</h2>
 
     <div class="flex-container">
       <div *ngFor="let field of fields" class="flex-item">
-        <app-form-generator [field]="field" [form]="form" class=""></app-form-generator>
+        <app-form-generator [field]="field" [form]="form"></app-form-generator>
       </div>
     </div>
 
     <div class="buttons">
-      <input type="submit" value="Buscar">
-      <input type="reset" value="Borrar">
+      <input type="reset" value="Limpiar filtros">
     </div>
   </form>
-
 </div>

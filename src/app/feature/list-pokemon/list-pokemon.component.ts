@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from './../../service/pokemon.service';
+import { filter } from 'rxjs/operators';
+import { Pokemon } from 'src/app/model/pokemon.interface';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -9,7 +11,8 @@ import { PokemonService } from './../../service/pokemon.service';
 export class ListPokemonComponent implements OnInit {
 
   pokemonList = [];
-  fullPokemonList = [];
+  fullPokemonList: Pokemon[] = [];
+  filteredPokemon: Pokemon[] = [];
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -19,8 +22,8 @@ export class ListPokemonComponent implements OnInit {
       .then(result =>  result.results);
 
     // Get information of each pokemon and order desc
-    for (let i = this.pokemonList.length - 1; i >= 0; i--) {
-      await this.pokemonService.getInfoPokemon(this.pokemonList[i].url).toPromise()
+    this.pokemonList.forEach(pokemon => {
+      this.pokemonService.getInfoPokemon(pokemon.url).toPromise()
         .then(result => {
           this.fullPokemonList.push({
             id: result.id,
@@ -30,12 +33,35 @@ export class ListPokemonComponent implements OnInit {
             type2: result.types[1] ? result.types[1].type.name : null,
             sprite: result.sprites.front_default
           });
+          this.sortArrayByField(this.fullPokemonList, 'id');
         });
-    }
-    this.sortArrayById(this.fullPokemonList);
+    });
+    this.filteredPokemon = this.fullPokemonList;
   }
 
-  sortArrayById(array) {
-    return array.sort((a, b) => b.id - a.id);
+  sortArrayByField(array, field) {
+    return array.sort((a, b) => b[field] - a[field]);
+  }
+
+  getFilter(dataFilter) {
+    let filtered = this.fullPokemonList;
+
+    if (dataFilter && dataFilter.name) {
+      filtered = filtered.filter(pokemon => {
+        return pokemon.name.toLowerCase().includes(dataFilter.name.toLowerCase())
+      });
+    }
+    if (dataFilter && dataFilter.weight) {
+      filtered = filtered.filter(pokemon => {
+        return Math.floor(pokemon.weight / 10) === parseInt(dataFilter.weight, 10);
+      });
+    }
+    if (dataFilter && dataFilter.type) {
+      filtered = filtered.filter(pokemon => {
+        return  pokemon.type1 === dataFilter.type ||
+                pokemon.type2 === dataFilter.type;
+      });
+    }
+    this.filteredPokemon = filtered;
   }
 }

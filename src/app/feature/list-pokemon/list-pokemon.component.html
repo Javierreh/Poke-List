@@ -1,6 +1,5 @@
 <div class="container">
-  <app-filter-pokemon></app-filter-pokemon>
-
+  <app-filter-pokemon (dataFilter)="getFilter($event)"></app-filter-pokemon>
   <div class="table-container">
     <table>
       <tr class="table-header">
@@ -9,7 +8,7 @@
         <th>Tipo</th>
         <th>Imagen</th>
       </tr>
-      <tr class="table-content" *ngFor="let pokemon of fullPokemonList">
+      <tr class="table-content" *ngFor="let pokemon of filteredPokemon">
         <td>{{ pokemon.name | titlecase }}</td>
         <td>{{ pokemon.weight / 10 }} Kg</td>
         <td class="type">
@@ -22,10 +21,6 @@
         </td>
         <td><img [src]="pokemon.sprite"></td>
       </tr>
-    </table>
-        
+    </table> 
   </div>
-
 </div>
-
-

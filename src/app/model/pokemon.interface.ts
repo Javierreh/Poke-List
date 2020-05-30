@@ -6,3 +6,9 @@ export interface Pokemon {
   type2: string;
   sprite: string;
 }
+
+export interface PokemonFilter {
+  name: string;
+  weight: number;
+  type: string;
+}
