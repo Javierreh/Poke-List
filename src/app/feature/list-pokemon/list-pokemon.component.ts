@@ -49,7 +49,7 @@ export class ListPokemonComponent implements OnInit {
 
     if (dataFilter && dataFilter.name) {
       filtered = filtered.filter(pokemon => {
-        return pokemon.name.toLowerCase().includes(dataFilter.name.toLowerCase())
+        return pokemon.name.toLowerCase().includes(dataFilter.name.toLowerCase());
       });
     }
     if (dataFilter && dataFilter.weight) {

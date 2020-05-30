@@ -69,6 +69,26 @@ input[type=submit], input[type=reset] {
     padding-left: 10px;
   }
 
+  input[type=file] {
+    position: relative;
+    cursor: pointer;
+    color: transparent;
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+    &::after {
+      font-family: "Font Awesome 5 Free"; 
+      font-weight: 900;
+      font-size: 30px;
+      content: "\f093";
+      color: darkblue;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 10px 18px;
+    }
+  }
+
   .floating-label {
     font-size: 18px;
     position: absolute;
@@ -83,10 +103,11 @@ input[type=submit], input[type=reset] {
     border: 1px solid darkblue;
   }
 
-  input.ng-dirty ~ .floating-label, 
-  input:focus ~ .floating-label,
+  input:not([type=file]).ng-dirty ~ .floating-label, 
+  input:not([type=file]):focus ~ .floating-label,
   select.ng-dirty ~ .floating-label,
-  select:focus ~ .floating-label {
+  select:focus ~ .floating-label,
+  input[type=file].ng-dirty.ng-touched ~ .floating-label {
     font-size: 12px;
     top: 14px;
     color: darkblue;
