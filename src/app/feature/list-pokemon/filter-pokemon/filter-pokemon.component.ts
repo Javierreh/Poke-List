@@ -59,4 +59,9 @@ export class FilterPokemonComponent implements OnInit, AfterViewInit {
       this.dataFilter.emit(this.filter);
     });
   }
+
+  resetFilter() {
+    this.filter = { name: null, weight: null, type: null };
+    this.dataFilter.emit(this.filter);
+  }
 }
