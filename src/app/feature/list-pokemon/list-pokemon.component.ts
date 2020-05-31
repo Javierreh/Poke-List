@@ -32,7 +32,7 @@ export class ListPokemonComponent implements OnInit {
             weight: result.weight,
             type1: result.types[0].type.name,
             type2: result.types[1] ? result.types[1].type.name : null,
-            sprite: result.sprites.front_default
+            image: result.sprites.front_default
           });
           this.sortArrayByField(this.fullPokemonList, 'id');
         });

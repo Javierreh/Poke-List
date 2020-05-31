@@ -15,6 +15,8 @@ import { ListPokemonComponent } from './feature/list-pokemon/list-pokemon.compon
 import { FilterPokemonComponent } from './feature/list-pokemon/filter-pokemon/filter-pokemon.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 
+import { Ng2ImgMaxModule } from 'ng2-img-max';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2ImgMaxModule
   ],
   providers: [FormControlService],
   bootstrap: [AppComponent]

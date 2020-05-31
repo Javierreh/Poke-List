@@ -21,7 +21,7 @@
         </td>
         <td>
           <div *ngIf="!loaded" class="spinner-loading"></div>
-          <img [hidden]="!loaded" (load)="loaded = true" [src]="pokemon.sprite">
+          <img [hidden]="!loaded" (load)="loaded = true" [src]="pokemon.image">
         </td>
       </tr>
     </table> 

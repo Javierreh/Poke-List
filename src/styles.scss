@@ -75,6 +75,8 @@ input[type=submit], input[type=reset] {
     color: transparent;
     &::-webkit-file-upload-button {
       visibility: hidden;
+      width: 0;
+      height: 0;
     }
     &::after {
       font-family: "Font Awesome 5 Free"; 
@@ -85,10 +87,10 @@ input[type=submit], input[type=reset] {
       position: absolute;
       right: 0;
       top: 0;
-      padding: 10px 18px;
+      padding: 8px 18px;
     }
   }
-
+  
   .floating-label {
     font-size: 18px;
     position: absolute;
@@ -96,6 +98,19 @@ input[type=submit], input[type=reset] {
     left: 20px;
     top: 23px;
     transition: 0.2s ease all;
+  }
+
+  .file-name {
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    bottom: 23px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    padding: 0 60px 0 25px;
   }
 
   input:focus, select:focus {

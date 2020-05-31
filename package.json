@@ -24,6 +24,7 @@
     "concurrently": "^5.2.0",
     "core-js": "^2.5.4",
     "json-server": "^0.16.1",
+    "ng2-img-max": "^2.2.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

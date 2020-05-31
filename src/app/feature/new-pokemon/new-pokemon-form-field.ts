@@ -25,15 +25,7 @@ export class NewPokemonFields {
         options: types,
         required: true,
         order: 3
-      }),
-
-      new TextboxField({
-        key: 'image',
-        label: 'Imagen',
-        type: 'file',
-        required: true,
-        order: 4
-      }),
+      })
     ];
   }
 }

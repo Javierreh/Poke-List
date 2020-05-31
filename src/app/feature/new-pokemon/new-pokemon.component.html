@@ -6,9 +6,21 @@
       <app-form-generator [field]="field" [form]="form"></app-form-generator>
     </div>
 
+    <div class="form-group">
+      <div>
+        <input formControlName="image" type="file" accept="image/*" (change)="onFileSelected($event)" id="image" (click)="resetInputFile()">
+        <label class="floating-label" for="image">Imagen</label>
+        <label class="file-name" *ngIf="imageName">{{ imageName }}</label>
+      </div>
+      <div class="error-message" *ngIf="!form.controls['image'].value && form.get('image').touched">Completa este campo</div>
+      <div class="error-message" *ngIf="errorCompressing">Error comprimiendo la imagen</div>
+      <div class="error-message" *ngIf="!errorCompressing && form.get('image').errors?.fileExtension?.wrongFileType">Formato de imagen no compatible</div>
+      <div class="error-message" *ngIf="form.get('image').errors?.wrongSize">Imagen demasiado grande (Max 1MB)</div>
+    </div>
+
     <div class="buttons">
       <input type="submit" [disabled]="!form.valid" value="Insertar">
-      <input type="reset" value="Borrar">
+      <input type="reset" value="Borrar" (click)="resetForm()">
     </div>
   </form>
 
