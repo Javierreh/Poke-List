@@ -8,7 +8,7 @@
         <th>Tipo</th>
         <th>Imagen</th>
       </tr>
-      <tr class="table-content" *ngFor="let pokemon of filteredPokemon">
+      <tr class="table-content" *ngFor="let pokemon of filteredPokemonList">
         <td>{{ pokemon.name | titlecase }}</td>
         <td>{{ pokemon.weight / 10 }} Kg</td>
         <td class="type">

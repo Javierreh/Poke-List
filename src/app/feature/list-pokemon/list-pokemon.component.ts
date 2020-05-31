@@ -11,19 +11,26 @@ export class ListPokemonComponent implements OnInit {
 
   loaded = false;
 
-  pokemonList = [];
+  apiPokemonList = [];
+  customPokemonList: Pokemon[] = [];
   fullPokemonList: Pokemon[] = [];
-  filteredPokemon: Pokemon[] = [];
+  filteredPokemonList: Pokemon[] = [];
 
   constructor(private pokemonService: PokemonService) { }
 
   async ngOnInit() {
-    // Get all pokemon in list
-    this.pokemonList = await this.pokemonService.getAllPokemon().toPromise()
+
+    // Get all custom Pokemon (from local json server)
+    this.pokemonService.getAllCustomPokemon().subscribe(result => {
+      this.fullPokemonList.push(...result);
+    });
+
+    // Get all pokemon in list (from API)
+    this.apiPokemonList = await this.pokemonService.getAllPokemon().toPromise()
       .then(result =>  result.results);
 
-    // Get information of each pokemon and order desc
-    this.pokemonList.forEach(pokemon => {
+    // Get information of each pokemon and order desc (from API)
+    this.apiPokemonList.forEach(pokemon => {
       this.pokemonService.getInfoPokemon(pokemon.url).toPromise()
         .then(result => {
           this.fullPokemonList.push({
@@ -37,7 +44,8 @@ export class ListPokemonComponent implements OnInit {
           this.sortArrayByField(this.fullPokemonList, 'id');
         });
     });
-    this.filteredPokemon = this.fullPokemonList;
+
+    this.filteredPokemonList = this.fullPokemonList;
   }
 
   sortArrayByField(array, field) {
@@ -63,6 +71,6 @@ export class ListPokemonComponent implements OnInit {
                 pokemon.type2 === dataFilter.type;
       });
     }
-    this.filteredPokemon = filtered;
+    this.filteredPokemonList = filtered;
   }
 }

@@ -84,28 +84,18 @@ export class NewPokemonComponent implements OnInit {
     } else {
       this.loading = false;
     }
-
-    console.log(this.form);
-    // console.log(this.selectedPicture)
   }
-
 
   convertFileToBase64(file) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       this.compressedPictureData = reader.result;
-      // console.log(reader.result);
-      // this.form.get('image').setErrors(null);
     };
     reader.onerror = (error) => {
       console.log('Error: ', error);
     };
 
-  }
-
-  showMessage() {
-    console.log('Show');
   }
 
   resetInputFile() {

@@ -10,11 +10,11 @@ import { catchError } from 'rxjs/operators';
 })
 export class PokemonService {
 
-  private newPokemonUrl: string;
   private listPokemonUrl: string;
+  private customPokemonUrl: string;
 
   constructor(private http: HttpClient) {
-    this.newPokemonUrl = AppContext.context + 'pokemon';
+    this.customPokemonUrl = AppContext.context + 'pokemon';
     this.listPokemonUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151';
   }
 
@@ -39,7 +39,7 @@ export class PokemonService {
   insertNewPokemon(newPokemon: Pokemon): Promise<Pokemon> {
     return this.http
     .post(
-      this.newPokemonUrl,
+      this.customPokemonUrl,
       JSON.stringify(newPokemon),
       this.getHttpOptions())
     .toPromise()
@@ -60,13 +60,21 @@ export class PokemonService {
   }
 
   getTypes() {
-    const arrayTypes = [];
+    let arrayTypes = [];
     this.http.get('https://pokeapi.co/api/v2/type')
       .subscribe(result => {
         result['results'].forEach(type => {
-          arrayTypes.push(type['name']);
+          if (type['name'] !== 'shadow' && type['name'] !== 'unknown') {
+            arrayTypes.push(type['name']);
+          }
         });
     });
     return arrayTypes;
+  }
+
+  getAllCustomPokemon(): Observable<any> {
+    return this.http
+    .get<Pokemon>(this.customPokemonUrl)
+    .pipe(catchError(error => this.handleErrorObservable(error)));
   }
 }
