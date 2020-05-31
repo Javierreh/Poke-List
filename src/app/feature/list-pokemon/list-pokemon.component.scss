@@ -1,11 +1,10 @@
 .container {
-  margin: 20px auto;
+  margin: 20px auto 0;
   padding: 10px 15px;
   max-width: 1200px;
 }
 
 .result {
-  min-height: 40px;
   color: darkblue;
   font-weight: bold;
   padding: 2px 20px;
@@ -57,6 +56,22 @@
         display: flex;
         flex-wrap: wrap;
       }
+    }
+  }
+}
+
+.paginator {
+  color: darkblue;
+  text-align: center;
+  margin-bottom: 20px;
+  a, span {
+    font-size: 18px;
+    i {
+      font-size: 23px;
+      margin: auto 10px;
+      position: relative;
+      top: 2px;
+      cursor: pointer;
     }
   }
 }

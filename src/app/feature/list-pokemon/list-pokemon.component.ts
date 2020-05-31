@@ -10,11 +10,13 @@ import { Pokemon } from 'src/app/model/pokemon.interface';
 export class ListPokemonComponent implements OnInit {
 
   loaded = false;
+  filter = null;
 
   apiPokemonList = [];
   customPokemonList: Pokemon[] = [];
   fullPokemonList: Pokemon[] = [];
   filteredPokemonList: Pokemon[] = [];
+  paginatedPokemonList: any = [];
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -33,44 +35,72 @@ export class ListPokemonComponent implements OnInit {
     this.apiPokemonList.forEach(pokemon => {
       this.pokemonService.getInfoPokemon(pokemon.url).toPromise()
         .then(result => {
-          this.fullPokemonList.push({
+          const apiPokemon = {
             id: result.id,
             name: result.name,
             weight: result.weight,
             type1: result.types[0].type.name,
             type2: result.types[1] ? result.types[1].type.name : null,
             image: result.sprites.front_default
-          });
-          this.sortArrayByField(this.fullPokemonList, 'id');
+          };
+          this.fullPokemonList.push(apiPokemon);
+          this.paginatedPokemonList = this.pagination(this.fullPokemonList, 1, 10);
         });
     });
 
-    this.filteredPokemonList = this.fullPokemonList;
-  }
-
-  sortArrayByField(array, field) {
-    return array.sort((a, b) => b[field] - a[field]);
   }
 
   getFilter(dataFilter) {
-    let filtered = this.fullPokemonList;
+    this.filter = dataFilter;
+    this.filteredPokemonList = this.fullPokemonList;
 
     if (dataFilter && dataFilter.name) {
-      filtered = filtered.filter(pokemon => {
+      this.filteredPokemonList = this.filteredPokemonList.filter(pokemon => {
         return pokemon.name.toLowerCase().includes(dataFilter.name.toLowerCase());
       });
     }
     if (dataFilter && dataFilter.weight) {
-      filtered = filtered.filter(pokemon => {
+      this.filteredPokemonList = this.filteredPokemonList.filter(pokemon => {
         return Math.floor(pokemon.weight / 10) === parseInt(dataFilter.weight, 10);
       });
     }
     if (dataFilter && dataFilter.type) {
-      filtered = filtered.filter(pokemon => {
+      this.filteredPokemonList = this.filteredPokemonList.filter(pokemon => {
         return  pokemon.type1 === dataFilter.type ||
                 pokemon.type2 === dataFilter.type;
       });
     }
-    this.filteredPokemonList = filtered;
+    this.paginatedPokemonList = this.pagination(this.filteredPokemonList, 1, 10);
+  }
+
+
+  pagination(pItems: Pokemon[], pPage: number, pPerPage: number) {
+    const page = pPage || 1,
+    perPage = pPerPage || 10,
+    offset = (page - 1) * perPage,
+    paginatedItems = pItems.sort((a, b) => b.id - a.id).slice(offset).slice(0, perPage),
+    totalPages = Math.ceil(pItems.length / perPage);
+    return {
+      page: page,
+      perPage: perPage,
+      prevPage: page - 1 ? page - 1 : null,
+      nextPage: (totalPages > page) ? page + 1 : null,
+      total: pItems.length,
+      totalPages: totalPages,
+      data: paginatedItems
+    };
+  }
+
+  nextPage(pNextPage: number, pPerPage: number) {
+    if (pNextPage !== null) {
+      this.getFilter(this.filter);
+      this.paginatedPokemonList = this.pagination(this.filteredPokemonList, pNextPage, pPerPage);
+    }
+  }
+
+  prevPage(pPrevPage: number, pPerPage: number) {
+    if (pPrevPage !== null) {
+      this.paginatedPokemonList = this.pagination(this.filteredPokemonList, pPrevPage, pPerPage);
+    }
   }
 }

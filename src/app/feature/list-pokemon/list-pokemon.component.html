@@ -1,9 +1,9 @@
 <div class="container">
   <app-filter-pokemon (dataFilter)="getFilter($event)"></app-filter-pokemon>
 
-  <div class="table-container" *ngIf="filteredPokemonList.length > 0">
+  <div class="table-container" *ngIf="paginatedPokemonList.data && paginatedPokemonList.data.length > 0">
     <div class="result">
-        Se han encontrado {{ filteredPokemonList.length }} Pokemon
+        Se han encontrado {{ paginatedPokemonList.total }} Pokemon
     </div>
     <table>
       <tr class="table-header">
@@ -12,7 +12,7 @@
         <th>Tipo</th>
         <th>Imagen</th>
       </tr>
-      <tr class="table-content" *ngFor="let pokemon of filteredPokemonList">
+      <tr class="table-content" *ngFor="let pokemon of paginatedPokemonList.data">
         <td>{{ pokemon.name | titlecase }}</td>
         <td>{{ pokemon.weight / 10 }} Kg</td>
         <td class="type">
@@ -30,5 +30,15 @@
       </tr>
     </table> 
   </div>
-  <div class="result" *ngIf="filteredPokemonList.length === 0">No se ha encontrado ningún Pokemon</div>
+  <div class="result" *ngIf="paginatedPokemonList.data && paginatedPokemonList.data.length === 0">No se ha encontrado ningún Pokemon</div>
+</div>
+
+<div *ngIf="paginatedPokemonList && paginatedPokemonList.totalPages > 1" class="paginator">
+  <a (click)="prevPage(paginatedPokemonList.prevPage, paginatedPokemonList.perPage)" title="Página anterior">
+    <i class="fas fa-arrow-circle-left"></i>
+  </a>
+  <span>Página {{ paginatedPokemonList.page }} de {{ paginatedPokemonList.totalPages }}</span>
+  <a (click)="nextPage(paginatedPokemonList.nextPage, paginatedPokemonList.perPage)" title="Página siguiente">
+    <i class="fas fa-arrow-circle-right"></i>
+  </a>
 </div>
