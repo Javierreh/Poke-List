@@ -52,7 +52,7 @@ export class NewPokemonComponent implements OnInit {
     const request: Pokemon = {
       id: null,
       name: this.form.value.name,
-      weight: Number(this.form.value.weight),
+      weight: Number(this.form.value.weight) * 10,
       type1: this.form.value.type,
       type2: null,
       image: this.compressedPictureData
