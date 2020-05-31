@@ -13,3 +13,11 @@
     </div>
   </form>
 </div>
+
+<div class="data-filter">
+  <div class="filter-by" *ngIf="filter.name || filter.weight || filter.type">Filtrando por: 
+    <div *ngIf="filter.name">Nombre</div>
+    <div *ngIf="filter.weight">Peso</div>
+    <div *ngIf="filter.type">Tipo</div>
+  </div>
+</div>

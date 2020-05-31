@@ -9,6 +9,25 @@
   }
 }
 
+.data-filter {
+  color: darkblue;
+  font-weight: bold;
+  min-height: 35px;
+  margin-bottom: 5px;
+  div.filter-by {
+    padding: 2px 20px;
+    div {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #ddd;
+      color: darkblue;
+      border-radius: 15px;
+      margin: 2px;
+      font-size: 14px;
+    }
+  }
+}
+
 @media (min-width: 768px) {
   .flex-container .flex-item { width: 50% !important; }
 }

@@ -4,8 +4,18 @@
   max-width: 1200px;
 }
 
+.result {
+  min-height: 40px;
+  color: darkblue;
+  font-weight: bold;
+  padding: 2px 20px;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
 .table-container {
-  margin: 30px auto 10px;
+  margin: 0px auto 10px;
+  
   table {
     width: 100%;
     background-color: #ddd;

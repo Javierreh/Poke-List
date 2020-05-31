@@ -1,6 +1,10 @@
 <div class="container">
   <app-filter-pokemon (dataFilter)="getFilter($event)"></app-filter-pokemon>
-  <div class="table-container">
+
+  <div class="table-container" *ngIf="filteredPokemonList.length > 0">
+    <div class="result">
+        Se han encontrado {{ filteredPokemonList.length }} Pokemon
+    </div>
     <table>
       <tr class="table-header">
         <th>Nombre</th>
@@ -26,4 +30,5 @@
       </tr>
     </table> 
   </div>
+  <div class="result" *ngIf="filteredPokemonList.length === 0">No se ha encontrado ningún Pokemon</div>
 </div>
